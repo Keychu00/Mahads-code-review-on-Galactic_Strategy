@@ -5,12 +5,13 @@ public class GameBoard {
     private int[][] resourceCosts; // Represents resource cost to traverse each cell
     private final int rows = 5;
     private final int cols = 5;
-
+    // Could add a class-level comment describing what the board represents and how it's used in the game
+    // extracting 5x5 size into constants so we can change board size more easily later
     public GameBoard() {
         planets = new int[rows][cols];
         resourceCosts = new int[rows][cols];
     }
-
+// Could combine this with initializeBoard() to reduce setup steps
     /**
      * Initializes the game board with default values.
      * Planets are set to 0 (empty), and resource costs are set to default values.
@@ -21,6 +22,7 @@ public class GameBoard {
                 planets[i][j] = 0; // No planet in this cell
                 resourceCosts[i][j] = 1; // Default traversal cost
             }
+            // Optional: use a loop or method to place predefined planets for better scalability
         }
 
         placePlanet(0, 0, 1); // Earth
@@ -40,7 +42,7 @@ public class GameBoard {
     public void placePlanet(int row, int col, int planetId) {
         planets[row][col] = planetId;
     }
-
+// Could add bounds check to prevent array out-of-bounds errors
     /**
      * Sets the resource cost for traversing a specific cell.
      *
@@ -51,7 +53,7 @@ public class GameBoard {
     public void setResourceCost(int row, int col, int cost) {
         resourceCosts[row][col] = cost;
     }
-
+// Same here — consider adding bounds check
     /**
      * Gets the ID of the planet at a specific location.
      *
@@ -72,6 +74,7 @@ public class GameBoard {
     }
 
     public void displayBoard() {
+        // Optional: Add grid labels or formatting for easier visual debugging
         System.out.println("Planets:");
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -95,4 +98,6 @@ public class GameBoard {
     public int getCols() {
         return cols;
     }
+    // Consider making rows/cols configurable in constructor instead of fixed
 }
+a

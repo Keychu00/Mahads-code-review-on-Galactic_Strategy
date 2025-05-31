@@ -23,6 +23,7 @@ public class GalacticShip {
         CLOAKING_DEVICE,
         REPAIR_DRONES
     }
+    // If we later add logic to abilities, might be better to make each ability a classr
 
     /**
      * Constructs a GalacticShip with the specified name, health, and attack power.
@@ -37,12 +38,15 @@ public class GalacticShip {
         this.attackPower = attackPower;
         this.combatAbilities = new ArrayList<>();
     }
+    // You can chain this toyea  the second constructor to avoid repeating ability list setup
+
 
     public GalacticShip(String enterprise) {
         this.health = 0;
         this.name = enterprise;
         this.combatAbilities = new ArrayList<>();
     }
+    // Consider renaming parameter to something like "name" for clarity
 
     public String getName() {
         return name;
@@ -62,11 +66,15 @@ public class GalacticShip {
             this.health = 0; // health cannot go below 0
         }
     }
+    // Could simplify using: this.health = Math.max(this.health - damage, 0);
+
+
+    // Could simplify using: this.health = Math.max(this.health - damage, 0);
 
     public void attack(GalacticShip target) {
         target.takeDamage(this.attackPower);
     }
-
+    // Add null check for target to prevent errors during runtime
     public boolean isDestroyed() {
         return this.health <= 0;
     }
@@ -81,6 +89,7 @@ public class GalacticShip {
             combatAbilities.add(ability);
         }
     }
+    // Using a Set instead of List could remove need to check for duplicates
 
     /**
      * Removes a combat ability from the ship.
@@ -109,4 +118,5 @@ public class GalacticShip {
     public List<CombatAbility> getCombatAbilities() {
         return new ArrayList<>(combatAbilities);
     }
+    // Could return Collections.unmodifiableList to protect internal list
 }
